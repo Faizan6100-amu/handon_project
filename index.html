@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <title>E-commerce Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // A global variable to store the cart items
+        let cart = [];
+
+        // A function to add a product to the cart
+        function addToCart(productId) {
+
+            // Get the product element by its id
+            let product = document.getElementById(productId);
+
+            // Get the product name, price and image from the element
+            let name = product.querySelector(".product-name").innerText;
+            let price = product.querySelector(".product-price").innerText.slice(1);
+            let image = product.querySelector(".product-image").src;
+
+            // Create an object to represent the cart item
+            let item = {
+                name,
+                price,
+                image
+            };
+
+            // Push the item to the cart array
+            cart.push(item);
+
+            // Update the cart display
+            updateCart();
+        }
+
+        // A function to update the cart display
+        function updateCart() {
+
+            // Get the cart items element by its id
+            let cartItems = document.getElementById("cart-items");
+
+            // Clear the previous content of the element
+            cartItems.innerHTML = "";
+
+            // Loop through the cart array and create a new element for each item
+            for (let item of cart) {
+                let cartItem = document.createElement("div");
+                cartItem.className = "cart-item";
+                cartItem.innerHTML = `
+            <img src="${item.image}" class="cart-item-image">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">$${item.price}</div>`;
+                cartItems.appendChild(cartItem);
+            }
+
+            // Calculate the total price of the cart
+            let total = 0;
+            for (let item of cart) {
+                total += Number(item.price);
+            }
+
+            // Get the cart total value element by its id and update its content
+            let cartTotalValue = document.getElementById("cart-total-value");
+            cartTotalValue.innerText = "$" + total;
+        }
+    </script>
+
+</head>
+
+<body>
+    <button class="nav-btn open-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav nav-black">
+        <div class="nav nav-red">
+            <div class="nav nav-white">
+                <button class="nav-btn close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <img src="3d.png.avif" alt="Logo" class="logo">
+
+                <ul class="list">
+                    <li><a href="#login">Login</a></li>
+                    <li><a href="#offers">Offers</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                    <li>
+                        <ul>
+                            <li><a href="#profile">Profile</a></li>
+                            <li><a href="#saved_card">Saved_Card</a></li>
+                            <li><a href="#coupons">Coupons</a></li>
+                            <li><a href="#logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<header>
+        <div class="rightSc">
+            <img src="imgpng1.png" alt="dev">
+        </div>
+        <h1>Summer Collection`s</h1>
+        <h2><span class="purple">Welcome to our online store! Only for you . . .</h2></span>
+        <span id="purple"></span>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#cart">Cart</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#place_your_order">Place_your_order</a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- This is where you will display your products and other content -->
+        <section id="products">
+            <!-- Product listing goes here -->
+            <h2>Products</h2>
+            <div class="container">
+                <div class="product" id="product1">
+                    <img src="https://picsum.photos/300/300?random=1" class="product-image">
+                    <div class="product-name">Product 1</div>
+                    <div class="product-price">$10</div>
+                    <button class="product-button" onclick="addToCart('product1')">Add to Cart</button>
+                </div>
+                <div class="product" id="product2">
+                    <img src="https://picsum.photos/300/300?random=2" class="product-image">
+                    <div class="product-name">Product 2</div>
+                    <div class="product-price">$20</div>
+                    <button class="product-button" onclick="addToCart('product2')">Add to Cart</button>
+                </div>
+                <div class="product" id="product3">
+                    <img src="https://picsum.photos/300/300?random=3" class="product-image">
+                    <div class="product-name">Product 3</div>
+                    <div class="product-price">$30</div>
+                    <button class="product-button" onclick="addToCart('product3')">Add to Cart</button>
+                </div>
+                <div class="product" id="product4">
+                    <img src="https://picsum.photos/300/300?random=4" class="product-image">
+                    <div class="product-name">Product 4</div>
+                    <div class="product-price">$25</div>
+                    <button class="product-button" onclick="addToCart('product4')">Add to Cart</button>
+                </div>
+                <div class="product" id="product5">
+                    <img src="https://picsum.photos/300/300?random=5" class="product-image">
+                    <div class="product-name">Product 5</div>
+                    <div class="product-price">$110</div>
+                    <button class="product-button" onclick="addToCart('product5')">Add to Cart</button>
+                </div>
+                <div class="product" id="product6">
+                    <img src="https://picsum.photos/300/300?random=6" class="product-image">
+                    <div class="product-name">Product 6</div>
+                    <div class="product-price">$80</div>
+                    <button class="product-button" onclick="addToCart('product6')">Add to Cart</button>
+                </div>
+                <div class="product" id="product7">
+                    <img src="https://picsum.photos/300/300?random=7" class="product-image">
+                    <div class="product-name">Product 7</div>
+                    <div class="product-price">$90</div>
+                    <button class="product-button" onclick="addToCart('product7')">Add to Cart</button>
+                </div>
+                <div class="product" id="product8">
+                    <img src="https://picsum.photos/300/300?random=8" class="product-image">
+                    <div class="product-name">Product 8</div>
+                    <div class="product-price">$40</div>
+                    <button class="product-button" onclick="addToCart('product8')">Add to Cart</button>
+                </div>
+                <div class="product" id="product9">
+                    <img src="https://picsum.photos/300/300?random=9" class="product-image">
+                    <div class="product-name">Product 9</div>
+                    <div class="product-price">$200</div>
+                    <button class="product-button" onclick="addToCart('product9')">Add to Cart</button>
+                </div>
+                <div class="product" id="product9">
+                    <img src="https://picsum.photos/300/300?random=14" class="product-image">
+                    <div class="product-name">Product 14</div>
+                    <div class="product-price">$120</div>
+                    <button class="product-button" onclick="addToCart('product14')">Add to Cart</button>
+                </div>
+                <div class="product" id="product10">
+                    <img src="https://picsum.photos/300/300?random=10" class="product-image">
+                    <div class="product-name">Product 10</div>
+                    <div class="product-price">$160</div>
+                    <button class="product-button" onclick="addToCart('product10')">Add to Cart</button>
+                </div>
+                <div class="product" id="product11">
+                    <img src="https://picsum.photos/300/300?random=11" class="product-image">
+                    <div class="product-name">Product 11</div>
+                    <div class="product-price">$85</div>
+                    <button class="product-button" onclick="addToCart('product11')">Add to Cart</button>
+                </div>
+                <div class="product" id="product12">
+                    <img src="https://picsum.photos/300/300?random=12" class="product-image">
+                    <div class="product-name">Product 12</div>
+                    <div class="product-price">$170</div>
+                    <button class="product-button" onclick="addToCart('product12')">Add to Cart</button>
+                </div>
+                <div class="product" id="product13">
+                    <img src="https://picsum.photos/300/300?random=13" class="product-image">
+                    <div class="product-name">Product 13</div>
+                    <div class="product-price">$45</div>
+                    <button class="product-button" onclick="addToCart('product13')">Add to Cart</button>
+                </div>
+                <div class="product" id="product15">
+                    <img src="https://picsum.photos/300/300?random=15" class="product-image">
+                    <div class="product-name">Product 15</div>
+                    <div class="product-price">$150</div>
+                    <button class="product-button" onclick="addToCart('product15')">Add to Cart</button>
+                </div>
+                <div class="product" id="product16">
+                    <img src="https://picsum.photos/300/300?random=16" class="product-image">
+                    <div class="product-name">Product 16</div>
+                    <div class="product-price">$30</div>
+                    <button class="product-button" onclick="addToCart('product13')">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart">
+            <h2>Cart</h2>
+            <!-- Cart content goes here -->
+            <table>
+                <tr>
+                    <td>
+                        <div class="cart">
+                            <div class="cart-title">Shopping Cart</div>
+                            <div id="cart-items"></div>
+                            <div class="cart-total">
+                                <span class="cart-total-label"> Total Amout :</span>
+                                <span id="cart-total-value"> $0 </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="contact" id="contact">
+                            <h2>Contact to Customer care</h2>
+                            <form action="#" method="post">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                                <label for="message">Message:</label>
+                                <textarea id="message" name="message" placeholder="Enter your message" rows="10"
+                                    required></textarea>
+
+                                <button type="submit"> Send Message </button>
+                            </form>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="con" id="con">
+                            <h2>Place your order</h2>
+                            <form action="#" method="post">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                                <label for="items">Number of items :</label>
+                                <input type="items" id="items" name="items" placeholder="Enter items number" required>
+
+                                <label for="address">Full Address:</label>
+                                <textarea id="message" name="message" placeholder="Enter your Address" rows="10"
+                                    required></textarea>
+
+                                <button type="submit">Make Payment</button>
+                            </form>
+                        </div>
+                    </td>
+                    </td>
+                </tr>
+            </table>
+
+        </section>
+    </main>
+    <footer>
+        <p>© 2023 E-Commerce Website by Faizan@Khan. All rights reserved.</p>
+    </footer>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <!-- Setup and start animation! -->
+    <script>
+        var typed = new Typed('#purple', {
+            strings: ['Deal of the Day @ 40% off - -'],
+            typeSpeed: 80,
+        });
+    </script>
+    <script>
+        const open_btn = document.querySelector('.open-btn')
+const close_btn = document.querySelector('.close-btn')
+const nav = document.querySelectorAll('.nav')
+
+open_btn.addEventListener('click', () => {
+    nav.forEach(nav_el => nav_el.classList.add('visible'))
+})
+
+close_btn.addEventListener('click', () => {
+    nav.forEach(nav_el => nav_el.classList.remove('visible'))
+})
+    </script>
+
+</body>
+
+</html>
